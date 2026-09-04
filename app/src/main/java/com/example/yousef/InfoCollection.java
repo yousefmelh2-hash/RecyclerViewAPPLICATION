@@ -23,7 +23,7 @@ String name;
                   Intent intent = new Intent(InfoCollection.this, SecondActivity.class);
                 intent.putExtra("name", EditTextName.getText().toString());
                 startActivity(intent);
-            }
+            } // help
         });
     }
 
