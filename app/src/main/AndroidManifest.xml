@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecyclerView">
         <activity
-            android:name=".ShowInformation"
+            android:name=".ItemListActivity"
             android:exported="false" />
         <activity
-            android:name=".InfoCollection"
+            android:name=".ItemInputActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
