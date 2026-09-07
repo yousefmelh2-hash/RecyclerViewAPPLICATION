@@ -26,7 +26,7 @@ private ArrayList<Item>arrayList =new ArrayList();
 
 private ActivityResultLauncher<String> galleryLauncher;
 private Uri selectedImageUri;
-String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +34,7 @@ String name;
         initComponents();
         registerLaunchers();
         setListeners();
-        chooseFromGallery();
-        cameraNotImplemented();
-        addItem();
-        clearForm();
-        openItemList();
+
 
 
 
@@ -89,7 +85,7 @@ String name;
             btnGallery.setOnClickListener(v -> chooseFromGallery());
             btnCamera.setOnClickListener(v -> cameraNotImplemented());
             btnAdd.setOnClickListener(v -> addItem());
-           /* btnDisplayResults.setOnClickListener(v -> openItemList());*/
+            btnDisplayResults.setOnClickListener(v -> openItemList());
         }
 
 
