@@ -3,42 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:padding="20dp"
+    android:layout_height="300dp">
 
     <TextView
         android:id="@+id/tvLastName"
-        android:layout_width="107dp"
-        android:layout_height="53dp"
+        android:layout_width="134dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/pokemonfont"
         android:gravity="center"
         android:text="TextView"
         android:textSize="20sp"
-        android:fontFamily="@font/pokemonfont"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.957" />
+        app:layout_constraintVertical_bias="0.685" />
 
     <TextView
         android:id="@+id/tvName"
-        android:layout_width="107dp"
-        android:layout_height="53dp"
+        android:layout_width="129dp"
+        android:layout_height="52dp"
+        android:fontFamily="@font/pokemonfont"
         android:gravity="center"
         android:text="TextView"
-        android:fontFamily="@font/pokemonfont"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.384" />
 
     <ImageView
         android:id="@+id/ivPhoto"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="199dp"
+        android:layout_height="195dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.912"
