@@ -9,7 +9,7 @@ public class Item implements Serializable {
     public Item(String name, String lastName, String photoID){
         this.name=name;
         this.lastName=lastName;
-        this.photoID=photoID;
+        this.photoID=photoID; //g
     }
 
 
