@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ItemInputActivity extends AppCompatActivity {
@@ -22,6 +24,8 @@ private Button btnAdd, btnGallery, btnCamera, btnDisplayResults;
 private EditText etName, etLastName;
 private ImageView ivPhoto;
 private Item item;
+    private ActivityResultLauncher<Uri> cameraLauncher;
+    private Uri cameraImageUri;
 private ArrayList<Item>arrayList =new ArrayList();
 
 private ActivityResultLauncher<String> galleryLauncher;
@@ -83,14 +87,31 @@ private Uri selectedImageUri;
     private void setListeners() {
 
             btnGallery.setOnClickListener(v -> chooseFromGallery());
-            btnCamera.setOnClickListener(v -> cameraNotImplemented());
+            btnCamera.setOnClickListener(v -> openCamera());
             btnAdd.setOnClickListener(v -> addItem());
             btnDisplayResults.setOnClickListener(v -> openItemList());
         }
 
 
-    private void cameraNotImplemented() {
-        Toast.makeText(this, "Not implemented yet",Toast.LENGTH_SHORT).show();
+    private void openCamera() {
+        /*Toast.makeText(this, "Not implemented yet",Toast.LENGTH_SHORT).show();*/
+        cameraImageUri = createImageUri();
+        cameraLauncher.launch(cameraImageUri);
+
+    }
+    private Uri createImageUri() {
+        File folder = new File(getFilesDir(), "camera");
+        folder.mkdirs();
+
+        String fileName = "photo_" +
+                System.currentTimeMillis() + ".jpg";
+
+        File photoFile = new File(folder, fileName);
+        return FileProvider.getUriForFile(
+                this,
+                getPackageName() + ".fileprovider",
+                photoFile
+        );
     }
 
     private void registerLaunchers() {
@@ -104,6 +125,15 @@ private Uri selectedImageUri;
             }
         }
 );
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.TakePicture(),
+                success -> {
+                    if (success) {
+                        selectedImageUri = cameraImageUri;
+                        ivPhoto.setImageURI(cameraImageUri);
+                    }
+                }
+        );
     }
 
     private void chooseFromGallery() {
