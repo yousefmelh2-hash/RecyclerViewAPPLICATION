@@ -5,14 +5,24 @@ import android.widget.ImageView;
 import java.io.Serializable;
 
 public class Item implements Serializable {
-    String name, lastName, photoID;
+    private String name, lastName, photoID;
+    private int id;
     public Item(String name, String lastName, String photoID){
         this.name=name;
         this.lastName=lastName;
         this.photoID=photoID; //g
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public Item(String name, String lastName, String photoID, int id) {
+        this.name = name;
+        this.lastName = lastName;
+        this.photoID = photoID;
+        this.id = id;
+    }
 
     public String getName() {
         return name;
