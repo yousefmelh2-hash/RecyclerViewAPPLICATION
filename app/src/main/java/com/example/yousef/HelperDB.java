@@ -41,13 +41,17 @@ public class HelperDB extends SQLiteOpenHelper {
         db.insert(TABLE_ITEMS,null,values);
         db.close();
     }
-   /* private Item cursorToItem(Cursor cursor){ // To finish this!
+    private Item cursorToItem(Cursor cursor){ // To finish this!
         int id=cursor.getInt(
                 cursor.getColumnIndexOrThrow(COL_ID));
-        String title
-        )
-
-    }*/
+        String name=cursor.getString(
+                cursor.getColumnIndexOrThrow(COL_NAME));
+        String lastName=cursor.getString(
+                cursor.getColumnIndexOrThrow(COL_LASTNAME));
+        String photoID=cursor.getString(
+                cursor.getColumnIndexOrThrow(COL_PHOTOID));
+        return new Item(lastName, name,photoID , id);
+    }
     public ArrayList<Item> getAllItems(){
         ArrayList<Item> items=new ArrayList<>();
         SQLiteDatabase db= getReadableDatabase();
@@ -55,7 +59,7 @@ public class HelperDB extends SQLiteOpenHelper {
              "SELECT "+COL_ID+", "+COL_NAME+", " +COL_LASTNAME+", "+COL_PHOTOID
                 +" FROM "+TABLE_ITEMS,null);
         while (cursor.moveToNext()){
-             addItem(cursorToItem(cursor));
+            items.add(cursorToItem(cursor));
         }
     cursor.close();
     db.close();
@@ -71,7 +75,7 @@ public class HelperDB extends SQLiteOpenHelper {
                 +" WHERE "+COL_NAME +" = ?",
                 new String[]{name});
         while (cursor.moveToNext()){
-            addItem(cursorToItem(cursor));
+            items.add(cursorToItem(cursor));
         }
         cursor.close();
         db.close();

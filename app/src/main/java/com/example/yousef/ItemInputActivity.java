@@ -29,7 +29,7 @@ private Item item;
     private Uri cameraImageUri;
 /*private ArrayList<Item>arrayList =new ArrayList();*/
 
-private ActivityResultLauncher<String> galleryLauncher;
+private ActivityResultLauncher<String[]> galleryLauncher;
 private Uri selectedImageUri;
 
     @Override
@@ -117,7 +117,7 @@ private Uri selectedImageUri;
 
     private void registerLaunchers() {
         galleryLauncher = registerForActivityResult(
-                new ActivityResultContracts.GetContent(),
+                new ActivityResultContracts.OpenDocument(),
                 uri -> {
             if (uri != null) {
                 selectedImageUri = uri;
@@ -138,7 +138,7 @@ private Uri selectedImageUri;
     }
 
     private void chooseFromGallery() {
-        galleryLauncher.launch("image/*");
+        galleryLauncher.launch(new String[]{"image/*"});
     }
 
     private void initComponents() {
