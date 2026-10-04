@@ -12,18 +12,21 @@ public class ItemListActivity extends AppCompatActivity {
 ArrayList<Item> arrayList=new ArrayList<>();
 RecyclerView recyclerView;
 ItemAdapter adapter;
+HelperDB helperDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_input_activity);
         initComponents();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        helperDB=new HelperDB(this);
+        arrayList=helperDB.getAllItems();
         adapter=new ItemAdapter(arrayList);
         recyclerView.setAdapter(adapter);
     }
 
     private void initComponents() {
         recyclerView=findViewById(R.id.recyclerView);
-        arrayList=(ArrayList<Item>) getIntent().getSerializableExtra("array");
+    /*    arrayList=(ArrayList<Item>) getIntent().getSerializableExtra("array");*/
     }
 }

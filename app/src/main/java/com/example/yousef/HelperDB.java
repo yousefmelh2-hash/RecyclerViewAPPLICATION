@@ -41,16 +41,13 @@ public class HelperDB extends SQLiteOpenHelper {
         db.insert(TABLE_ITEMS,null,values);
         db.close();
     }
-    private Item cursorToItem(Cursor cursor){
+   /* private Item cursorToItem(Cursor cursor){ // To finish this!
+        int id=cursor.getInt(
+                cursor.getColumnIndexOrThrow(COL_ID));
+        String title
+        )
 
-        return new Item(
-
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getInt(0)
-        );
-    }
+    }*/
     public ArrayList<Item> getAllItems(){
         ArrayList<Item> items=new ArrayList<>();
         SQLiteDatabase db= getReadableDatabase();
@@ -80,6 +77,42 @@ public class HelperDB extends SQLiteOpenHelper {
         db.close();
         return items;
     }
+    public Item getItemById(int id){
+        SQLiteDatabase db=getReadableDatabase();
+        Cursor cursor=db.rawQuery(
+        "SELECT " +COL_ID+ ", "+ COL_NAME +", "
+                +COL_LASTNAME+", "+COL_PHOTOID
+                +" FROM "+ TABLE_ITEMS
+                + " WHERE "+ COL_ID +" = ?",
+                new String[]{String.valueOf(id)}
+
+        );
+        Item item=null;
+        if(cursor.moveToFirst()){
+            item= cursorToItem(cursor);
+        }
+        cursor.close();
+        db.close();
+        return item;
+
+    }
+    public void updateItem(int id, String newFirstName, String lastName,String newImageUriString){
+        SQLiteDatabase db=getWritableDatabase();
+        ContentValues values=new ContentValues();
+        values.put(COL_NAME,newFirstName);
+        values.put(COL_LASTNAME,lastName);
+        values.put(COL_PHOTOID,newImageUriString);
+        db.update(TABLE_ITEMS,values,COL_ID+" = ?",new String[]{String.valueOf(id)});
+        db.close();
+    }
+    public void deleteItem(int id){
+        SQLiteDatabase db=getReadableDatabase();
+        db.delete(TABLE_ITEMS,COL_ID + " = ?"
+        ,new String[]{String.valueOf(id)}
+                );
+        db.close();
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVerison){}

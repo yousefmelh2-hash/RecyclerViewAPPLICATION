@@ -24,9 +24,10 @@ private Button btnAdd, btnGallery, btnCamera, btnDisplayResults;
 private EditText etName, etLastName;
 private ImageView ivPhoto;
 private Item item;
+    private HelperDB helperDB;
     private ActivityResultLauncher<Uri> cameraLauncher;
     private Uri cameraImageUri;
-private ArrayList<Item>arrayList =new ArrayList();
+/*private ArrayList<Item>arrayList =new ArrayList();*/
 
 private ActivityResultLauncher<String> galleryLauncher;
 private Uri selectedImageUri;
@@ -35,6 +36,7 @@ private Uri selectedImageUri;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_list_activity);
+        helperDB=new HelperDB(this);
         initComponents();
         registerLaunchers();
         setListeners();
@@ -49,10 +51,9 @@ private Uri selectedImageUri;
 
 
     }
-
-    private void openItemList() {
+        private void openItemList() {
        Intent intent=new Intent(this, ItemListActivity.class);
-       intent.putExtra("array", arrayList);
+       /*intent.putExtra("array", arrayList);*/
        startActivity(intent);
     }
 
@@ -79,7 +80,7 @@ private Uri selectedImageUri;
         }
         String photoID=selectedImageUri.toString();
         item=new Item(name,lastName,photoID);
-        arrayList.add(item);
+        helperDB.addItem(item);
         clearForm();
 
     }
