@@ -1,9 +1,11 @@
 package com.example.yousef;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,13 +29,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         TextView tvName;
         TextView tvLastName;
         ImageView ivPhoto;
-
+        Button btnEdit;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvName = itemView.findViewById(R.id.tvName);
             tvLastName = itemView.findViewById(R.id.tvLastName);
             ivPhoto = itemView.findViewById(R.id.ivPhoto);
+            btnEdit=itemView.findViewById(R.id.btnEdit);
         }
     }
 
@@ -66,6 +69,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
                     Uri.parse(item.getPhotoID())
             );
         }
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(view.getContext(), EditItemActivity.class);
+                intent.putExtra("item",item.getId());
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     // Number of items

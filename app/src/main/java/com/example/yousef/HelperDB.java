@@ -109,12 +109,17 @@ public class HelperDB extends SQLiteOpenHelper {
         db.update(TABLE_ITEMS,values,COL_ID+" = ?",new String[]{String.valueOf(id)});
         db.close();
     }
+
     public void deleteItem(int id){
         SQLiteDatabase db=getReadableDatabase();
         db.delete(TABLE_ITEMS,COL_ID + " = ?"
         ,new String[]{String.valueOf(id)}
                 );
         db.close();
+    }
+    private void updateItem2(int id, String newFirstName, String lastName){
+SQLiteDatabase db=getWritableDatabase();
+
     }
 
 

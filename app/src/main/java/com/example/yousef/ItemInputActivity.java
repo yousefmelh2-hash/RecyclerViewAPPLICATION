@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class ItemInputActivity extends AppCompatActivity {
 private Button btnAdd, btnGallery, btnCamera, btnDisplayResults;
@@ -35,7 +34,7 @@ private Uri selectedImageUri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_list_activity);
+        setContentView(R.layout.item_input_activity);
         helperDB=new HelperDB(this);
         initComponents();
         registerLaunchers();
