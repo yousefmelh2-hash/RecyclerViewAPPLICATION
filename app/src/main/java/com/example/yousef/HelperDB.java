@@ -50,7 +50,7 @@ public class HelperDB extends SQLiteOpenHelper {
                 cursor.getColumnIndexOrThrow(COL_LASTNAME));
         String photoID=cursor.getString(
                 cursor.getColumnIndexOrThrow(COL_PHOTOID));
-        return new Item(lastName, name,photoID , id);
+        return new Item(name, lastName,photoID , id);
     }
     public ArrayList<Item> getAllItems(){
         ArrayList<Item> items=new ArrayList<>();
@@ -100,7 +100,7 @@ public class HelperDB extends SQLiteOpenHelper {
         return item;
 
     }
-    public void updateItem(int id, String newFirstName, String lastName,String newImageUriString){
+    /* public void updateItem(int id, String newFirstName, String lastName,String newImageUriString){
         SQLiteDatabase db=getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put(COL_NAME,newFirstName);
@@ -108,7 +108,7 @@ public class HelperDB extends SQLiteOpenHelper {
         values.put(COL_PHOTOID,newImageUriString);
         db.update(TABLE_ITEMS,values,COL_ID+" = ?",new String[]{String.valueOf(id)});
         db.close();
-    }
+    }*/
 
     public void deleteItem(int id){
         SQLiteDatabase db=getReadableDatabase();
@@ -125,4 +125,22 @@ SQLiteDatabase db=getWritableDatabase();
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVerison){}
+      public void updateItem(int id, String newFirstName, String newlastName){
+        SQLiteDatabase db=getWritableDatabase();
+        ContentValues values=new ContentValues();
+        if (newFirstName.isEmpty() && newlastName.isEmpty()){
+            db.close();
+            return;
+        }
+        if (!newFirstName.isEmpty()){
+            values.put(COL_NAME,newFirstName);
+        }
+        if (!newlastName.isEmpty()){
+            values.put(COL_LASTNAME,newlastName);
+
+        }
+        db.update(TABLE_ITEMS,values,COL_ID+" = ?",new String[]{String.valueOf(id)});
+        db.close();
+    }
+
 }

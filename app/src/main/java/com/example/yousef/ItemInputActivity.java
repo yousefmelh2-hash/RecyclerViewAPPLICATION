@@ -119,6 +119,7 @@ private Uri selectedImageUri;
                 new ActivityResultContracts.OpenDocument(),
                 uri -> {
             if (uri != null) {
+                getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 selectedImageUri = uri;
                 ivPhoto.setImageURI(uri);
                 ivPhoto.setVisibility(VISIBLE);

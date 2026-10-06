@@ -28,28 +28,33 @@ private HelperDB helperDB;
         }
         tvName.setText(item.getName());
         tvLastName.setText(item.getLastName());
-        helperDB=new HelperDB(this);
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 helperDB.deleteItem(item.getId());
+                Toast.makeText(EditItemActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            helperDB.updateItem(item.getId(),etName.getText().toString(),etLastName.getText().toString(),item.getPhotoID());
+                Toast.makeText(EditItemActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+            helperDB.updateItem(item.getId(),etName.getText().toString(),etLastName.getText().toString());
+                finish();
             }
         });
     }
 
     private void initComponents() {
+        helperDB=new HelperDB(this);
         btnUpdate=findViewById(R.id.btnUpdate);
         btnDelete=findViewById(R.id.btnDelete);
         tvName=findViewById(R.id.tvName);
         tvLastName=findViewById(R.id.tvLastName);
-        etName=findViewById(R.id.etName);
-        etLastName=findViewById(R.id.etLastName);
+        etName=findViewById(R.id.etNewName);
+        etLastName=findViewById(R.id.etNewLastName);
         int id=getIntent().getIntExtra("item",-1);
         item=helperDB.getItemById(id);
     }

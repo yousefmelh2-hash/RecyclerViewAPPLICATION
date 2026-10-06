@@ -28,22 +28,7 @@
         app:layout_constraintHorizontal_bias="0.766"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.229" />
-
-    <EditText
-        android:id="@+id/etSearchTitle"
-        android:layout_width="301dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text=""
-        android:hint="Exact Title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.152" />
+        app:layout_constraintVertical_bias="0.213" />
 
     <Button
         android:id="@+id/btnSearch"
@@ -55,5 +40,21 @@
         app:layout_constraintHorizontal_bias="0.207"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.211" />
+
+    <EditText
+        android:id="@+id/etSearchTitle"
+        android:layout_width="301dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="Exact Title"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.136" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
